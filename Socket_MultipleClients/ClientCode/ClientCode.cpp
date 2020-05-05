@@ -6,18 +6,15 @@
 using namespace std;
 
 #include<WinSock2.h>
+#include "..\ServerCode\CSocket.h"
 
 #pragma comment (lib, "ws2_32.lib")
-
-//#define _WINSOCK_DEPRECATED_NO_WARNINGS
-//#pragma warning(disable : 4996)
 
 int main()
 {
   cout << "Client main started" << endl;
 
   WSADATA wsaData;
-
   int wsOk = WSAStartup(0x202, &wsaData);
   if (0 != wsOk)
   {
@@ -25,19 +22,22 @@ int main()
     return 0;
   }
 
-  const int port = 22000;
-  const char server_name[22] = "localhost";
-  //const char server_name[22] = "127.0.0.1";
+  CClientSocket clientSocket;
+  //SOCKET  conn_socket = socket(AF_INET, SOCK_STREAM, 0); /* Open a socket */
 
   struct hostent *hp;
+  const int port = 22000;
+  const char server_name[22] = "localhost";
 
   // Attempt to detect if we should call gethostbyname() or gethostbyaddr()
   if (isalpha(server_name[0]))
-  {   // server address is a name
+  {
+    // server address is a name
     hp = gethostbyname(server_name);
   }
   else
-  { // Convert nnn.nnn address to a usable one
+  {
+    // Convert nnn.nnn address to a usable one
     unsigned int addr = inet_addr(server_name);
     hp = gethostbyaddr((char *)&addr, 4, AF_INET);
   }
@@ -49,33 +49,39 @@ int main()
   server.sin_family = hp->h_addrtype;
   server.sin_port = htons(port);
 
-  SOCKET  conn_socket = socket(AF_INET, SOCK_STREAM, 0); /* Open a socket */
-
   cout <<"Client: Client connecting to "<< hp->h_name << endl;
 
-  if (connect(conn_socket, (struct sockaddr*)&server, sizeof(server)) == SOCKET_ERROR)
+  if (clientSocket.connectSocket((struct sockaddr*)&server, sizeof(server)) == SOCKET_ERROR)
   {
-    fprintf(stderr, "Client: connect() failed: %d\n", WSAGetLastError());
+    printf("Client: connect() failed: %d\n", WSAGetLastError());
     WSACleanup();
+    cin.get();
     return -1;
   }
   else
     printf("Client: connect() is OK.\n");
 
   string userInput;
-  do {
-    std::cout << "Please enter the string to send to server .. . \n";
+  do
+  {
+    std::cout << "Please enter the string to send to server : ";
     std::getline(std::cin, userInput);
-    auto bytesSent = send(conn_socket, userInput.c_str(), userInput.size() + 1, 0);
+
+    int bytesSent = clientSocket.sendData(userInput.c_str(), userInput.size() + 1, 0);
     if (SOCKET_ERROR == bytesSent || 0 == bytesSent)
     {
       std::cout << "Error in sending data to server \n";
       WSACleanup();
+      cin.get();
       return WSAGetLastError();
     }
-  } while (userInput.size() > 0); // || 0 == userInput[0] || '0' == userInput[0]
+
+  } while (userInput.size() > 0);
 
   cout << "Client main finished" << endl;
+  WSACleanup();
+  cin.get();
+  return 0;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

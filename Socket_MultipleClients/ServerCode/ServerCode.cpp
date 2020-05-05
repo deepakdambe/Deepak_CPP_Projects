@@ -25,12 +25,6 @@ int main()
 
   // Create Socket (Server)
   CServerSocket listeningSocket1;
-  SOCKET listeningSocket = socket(AF_INET, SOCK_STREAM, 0);
-  if (INVALID_SOCKET == listeningSocket)
-  {
-    cout << "socket creating failed" << endl;
-    return 0;
-  }
 
   // Bind the IP address and port to socket.
   sockaddr_in addr;
@@ -39,21 +33,15 @@ int main()
   addr.sin_addr.S_un.S_addr = INADDR_ANY;
 
   listeningSocket1.bindSocket((sockaddr *)&addr, sizeof(addr));
-  bind(listeningSocket, (sockaddr *)&addr, sizeof(addr));
 
   // Tell WinSock that socket is listening
   listeningSocket1.listenSocket(SOMAXCONN);
-  listen(listeningSocket, SOMAXCONN);
 
   // wait for connection
   sockaddr_in client;
   int clientSize = sizeof(client);
 
-  SOCKET clientSocket;
-  clientSocket = accept(listeningSocket, (sockaddr *)&client, &clientSize);
-
-  // close listening socket.
-  closesocket(listeningSocket);
+  CClientSocket clientSocket1 = listeningSocket1.acceptCSocket((sockaddr *)&client, &clientSize);
 
   // while loop, accept and echo client message.
   char buff[4096] = "";
@@ -61,8 +49,7 @@ int main()
   do
   {
     memset(buff, 0, 4096);
-    int bytesRecv = recv(clientSocket, buff, 4096, 0);
-
+    int bytesRecv = clientSocket1.recvData(buff, 4096, 0);
     if (SOCKET_ERROR == bytesRecv || 0 == bytesRecv)
     {
       break;
@@ -72,13 +59,12 @@ int main()
 
   } while (buff[0] = '0' || buff[0] == 0);
 
-  // close client socket
-  closesocket(clientSocket);
-
   // Cleanup WinSock.
   WSACleanup();
 
   cout << "Server main finished" << endl;
+  cin.get();
+  return 0;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
