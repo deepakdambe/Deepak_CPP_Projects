@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{98E0D0CF-2568-462A-8FE2-1428BD70022B}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>MseaDebug</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>N50;WIN32;_WINDOWS;MCE_EXPORTS;_CRT_SECURE_NO_WARNINGS;_SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS;_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING;BACNET_IT_DATALINK_SUPPORT;_CRT_NON_CONFORMING_SWPRINTFS;_CRT_NONSTDC_NO_WARNINGS;INCLUDE_SYNCHRONOUS_CALLS;NxE_FAMILY;UNICODE;_UNICODE;__STDC_WANT_LIB_EXT1__=1;USE_WOLFSSL;_VC80_UPGRADE=0x0710</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(jci_base_libs_SARAsset)\Includes;$(jci_mms_SARAsset)\Includes;$(jci_os_api_SARAsset)\Includes;$(ca_dictionary_SARAsset)\Includes;$(jci_ore_SARAsset)\Includes;$(jci_ore_features_SARAsset)\Includes;$(jci_pointio_SARAsset)\Includes;$(jci_baccomm_SARAsset)\Includes;$(jci_serial_comm_SARAsset)\Includes;$(jci_tool_lib_SARAsset)\Includes;$(jci_integrations_SARAsset)\Includes;$(g3_base_SARAsset)\Includes;$(g3_shared_libraries_SARAsset)\Includes;$(g3_integrations_SARAsset)\Includes;$(jci_sab_SARAsset)\Includes;$(jci_lme_SARAsset)\Includes;C:\ccm_wa\git\g3_metasys_core\g3_product_n50\\include;C:\ccm_wa\git\g3_metasys_core\g3_product_n50\..\g3_product_shared\N40_N50_NIS_ODS\include;C:\ccm_wa\git\g3_metasys_core\g3_product_n50\..\g3_product_shared\N50_NIS\include;C:\ccm_wa\git\g3_metasys_core\g3_product_n50\..\g3_product_shared\N50_NIS_ODS\include;C:\ccm_wa\git\g3_metasys_core\g3_product_n50\..\g3_product_shared\N50_ODS\include;C:\ccm_wa\git\g3_metasys_core\g3_product_n50\..\g3_product_shared\N40_N50_NIS_ODS\target\mce</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>wininet.lib;ws2_32.lib;gxif.lib;gpio.lib;gx_keep.lib;Winhttp.lib;jci_base_libs.lib;C11AnnexK.lib;DbgHelp.lib;legacy_stdio_definitions.lib;C:\ccm_wa\git\g3_metasys_core\g3_product_n50\Win32_Release\MSEA_Supv.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(jci_base_libs_SARAsset)\Library\$(PlatformName)_Libs\NAE-supervisor-Family\$(ConfigurationName);$(jci_mms_SARAsset)\Library\$(PlatformName)_Libs\NAE-supervisor-Family\$(ConfigurationName);$(jci_os_api_SARAsset)\Library\$(PlatformName)_Libs\NAE-supervisor-Family\$(ConfigurationName);$(jci_ore_SARAsset)\Library\$(PlatformName)_Libs\NAE-supervisor-Family\$(ConfigurationName);$(jci_ore_features_SARAsset)\Library\$(PlatformName)_Libs\NAE-supervisor-Family\$(ConfigurationName);$(jci_pointio_SARAsset)\Library\$(PlatformName)_Libs\NAE-supervisor-Family\$(ConfigurationName);$(jci_tool_lib_SARAsset)\Library\$(PlatformName)_Libs\NAE-supervisor-Family\$(ConfigurationName);$(jci_baccomm_SARAsset)\Library\$(PlatformName)_Libs\NAE-supervisor-Family\$(ConfigurationName);$(jci_serial_comm_SARAsset)\Library\$(PlatformName)_Libs\NAE-supervisor-Family\$(ConfigurationName);$(jci_integrations_SARAsset)\Library\$(PlatformName)_Libs\NAE-supervisor-Family\$(ConfigurationName);$(jci_sab_SARAsset)\Library\$(PlatformName)_Libs\NAE-supervisor-Family\$(ConfigurationName);$(jci_lme_SARAsset)\Library\$(PlatformName)_Libs\NAE-supervisor-Family\$(ConfigurationName);$(curl_SARAsset)\Library\$(PlatformName)_$(ConfigurationName)_FIPS;$(g3_base_SARAsset)\Library\$(PlatformName)_$(ConfigurationName);$(g3_objects_SARAsset)\Library\$(PlatformName)_$(ConfigurationName);$(g3_shared_libraries_SARAsset)\Library\lib;$(g3_shared_libraries_SARAsset)\Library\$(PlatformName)_$(ConfigurationName);$(g3_shared_libraries_SARAsset)\Library\$(PlatformName)_$(ConfigurationName)MCE;$(g3_integrations_SARAsset)\Library\$(PlatformName)_$(ConfigurationName);$(thirdparty_lzo)\lib;$(wolfssl_SARAsset)\Library\$(PlatformName)_Libs\NAE-supervisor-Family\$(ConfigurationName)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>N50;WIN32;_WINDOWS;MCE_EXPORTS;_CRT_SECURE_NO_WARNINGS;_SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS;_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING;BACNET_IT_DATALINK_SUPPORT;_CRT_NON_CONFORMING_SWPRINTFS;_CRT_NONSTDC_NO_WARNINGS;INCLUDE_SYNCHRONOUS_CALLS;NxE_FAMILY;UNICODE;_UNICODE;__STDC_WANT_LIB_EXT1__=1;USE_WOLFSSL;_VC80_UPGRADE=0x0710</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(jci_base_libs_SARAsset)\Includes;$(jci_mms_SARAsset)\Includes;$(jci_os_api_SARAsset)\Includes;$(ca_dictionary_SARAsset)\Includes;$(jci_ore_SARAsset)\Includes;$(jci_ore_features_SARAsset)\Includes;$(jci_pointio_SARAsset)\Includes;$(jci_baccomm_SARAsset)\Includes;$(jci_serial_comm_SARAsset)\Includes;$(jci_tool_lib_SARAsset)\Includes;$(jci_integrations_SARAsset)\Includes;$(g3_base_SARAsset)\Includes;$(g3_shared_libraries_SARAsset)\Includes;$(g3_integrations_SARAsset)\Includes;$(jci_sab_SARAsset)\Includes;$(jci_lme_SARAsset)\Includes;C:\ccm_wa\git\g3_metasys_core\g3_product_n50\\include;C:\ccm_wa\git\g3_metasys_core\g3_product_n50\..\g3_product_shared\N40_N50_NIS_ODS\include;C:\ccm_wa\git\g3_metasys_core\g3_product_n50\..\g3_product_shared\N50_NIS\include;C:\ccm_wa\git\g3_metasys_core\g3_product_n50\..\g3_product_shared\N50_NIS_ODS\include;C:\ccm_wa\git\g3_metasys_core\g3_product_n50\..\g3_product_shared\N50_ODS\include;C:\ccm_wa\git\g3_metasys_core\g3_product_n50\..\g3_product_shared\N40_N50_NIS_ODS\target\mce</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>wininet.lib;ws2_32.lib;gxif.lib;gpio.lib;gx_keep.lib;Winhttp.lib;jci_base_libs.lib;C11AnnexK.lib;DbgHelp.lib;legacy_stdio_definitions.lib;C:\ccm_wa\git\g3_metasys_core\g3_product_n50\Win32_Release\MSEA_Supv.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(jci_base_libs_SARAsset)\Library\$(PlatformName)_Libs\NAE-supervisor-Family\$(ConfigurationName);$(jci_mms_SARAsset)\Library\$(PlatformName)_Libs\NAE-supervisor-Family\$(ConfigurationName);$(jci_os_api_SARAsset)\Library\$(PlatformName)_Libs\NAE-supervisor-Family\$(ConfigurationName);$(jci_ore_SARAsset)\Library\$(PlatformName)_Libs\NAE-supervisor-Family\$(ConfigurationName);$(jci_ore_features_SARAsset)\Library\$(PlatformName)_Libs\NAE-supervisor-Family\$(ConfigurationName);$(jci_pointio_SARAsset)\Library\$(PlatformName)_Libs\NAE-supervisor-Family\$(ConfigurationName);$(jci_tool_lib_SARAsset)\Library\$(PlatformName)_Libs\NAE-supervisor-Family\$(ConfigurationName);$(jci_baccomm_SARAsset)\Library\$(PlatformName)_Libs\NAE-supervisor-Family\$(ConfigurationName);$(jci_serial_comm_SARAsset)\Library\$(PlatformName)_Libs\NAE-supervisor-Family\$(ConfigurationName);$(jci_integrations_SARAsset)\Library\$(PlatformName)_Libs\NAE-supervisor-Family\$(ConfigurationName);$(jci_sab_SARAsset)\Library\$(PlatformName)_Libs\NAE-supervisor-Family\$(ConfigurationName);$(jci_lme_SARAsset)\Library\$(PlatformName)_Libs\NAE-supervisor-Family\$(ConfigurationName);$(curl_SARAsset)\Library\$(PlatformName)_$(ConfigurationName)_FIPS;$(g3_base_SARAsset)\Library\$(PlatformName)_$(ConfigurationName);$(g3_objects_SARAsset)\Library\$(PlatformName)_$(ConfigurationName);$(g3_shared_libraries_SARAsset)\Library\lib;$(g3_shared_libraries_SARAsset)\Library\$(PlatformName)_$(ConfigurationName);$(g3_shared_libraries_SARAsset)\Library\$(PlatformName)_$(ConfigurationName)MCE;$(g3_integrations_SARAsset)\Library\$(PlatformName)_$(ConfigurationName);$(thirdparty_lzo)\lib;$(wolfssl_SARAsset)\Library\$(PlatformName)_Libs\NAE-supervisor-Family\$(ConfigurationName)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>N50;WIN32;_WINDOWS;MCE_EXPORTS;_CRT_SECURE_NO_WARNINGS;_SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS;_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING;BACNET_IT_DATALINK_SUPPORT;_CRT_NON_CONFORMING_SWPRINTFS;_CRT_NONSTDC_NO_WARNINGS;INCLUDE_SYNCHRONOUS_CALLS;NxE_FAMILY;UNICODE;_UNICODE;__STDC_WANT_LIB_EXT1__=1;USE_WOLFSSL;_VC80_UPGRADE=0x0710</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(jci_base_libs_SARAsset)\Includes;$(jci_mms_SARAsset)\Includes;$(jci_os_api_SARAsset)\Includes;$(ca_dictionary_SARAsset)\Includes;$(jci_ore_SARAsset)\Includes;$(jci_ore_features_SARAsset)\Includes;$(jci_pointio_SARAsset)\Includes;$(jci_baccomm_SARAsset)\Includes;$(jci_serial_comm_SARAsset)\Includes;$(jci_tool_lib_SARAsset)\Includes;$(jci_integrations_SARAsset)\Includes;$(g3_base_SARAsset)\Includes;$(g3_shared_libraries_SARAsset)\Includes;$(g3_integrations_SARAsset)\Includes;$(jci_sab_SARAsset)\Includes;$(jci_lme_SARAsset)\Includes;C:\ccm_wa\git\g3_metasys_core\g3_product_n50\\include;C:\ccm_wa\git\g3_metasys_core\g3_product_n50\..\g3_product_shared\N40_N50_NIS_ODS\include;C:\ccm_wa\git\g3_metasys_core\g3_product_n50\..\g3_product_shared\N50_NIS\include;C:\ccm_wa\git\g3_metasys_core\g3_product_n50\..\g3_product_shared\N50_NIS_ODS\include;C:\ccm_wa\git\g3_metasys_core\g3_product_n50\..\g3_product_shared\N50_ODS\include;C:\ccm_wa\git\g3_metasys_core\g3_product_n50\..\g3_product_shared\N40_N50_NIS_ODS\target\mce</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(jci_base_libs_SARAsset)\Library\$(PlatformName)_Libs\NAE-supervisor-Family\$(ConfigurationName);$(jci_mms_SARAsset)\Library\$(PlatformName)_Libs\NAE-supervisor-Family\$(ConfigurationName);$(jci_os_api_SARAsset)\Library\$(PlatformName)_Libs\NAE-supervisor-Family\$(ConfigurationName);$(jci_ore_SARAsset)\Library\$(PlatformName)_Libs\NAE-supervisor-Family\$(ConfigurationName);$(jci_ore_features_SARAsset)\Library\$(PlatformName)_Libs\NAE-supervisor-Family\$(ConfigurationName);$(jci_pointio_SARAsset)\Library\$(PlatformName)_Libs\NAE-supervisor-Family\$(ConfigurationName);$(jci_tool_lib_SARAsset)\Library\$(PlatformName)_Libs\NAE-supervisor-Family\$(ConfigurationName);$(jci_baccomm_SARAsset)\Library\$(PlatformName)_Libs\NAE-supervisor-Family\$(ConfigurationName);$(jci_serial_comm_SARAsset)\Library\$(PlatformName)_Libs\NAE-supervisor-Family\$(ConfigurationName);$(jci_integrations_SARAsset)\Library\$(PlatformName)_Libs\NAE-supervisor-Family\$(ConfigurationName);$(jci_sab_SARAsset)\Library\$(PlatformName)_Libs\NAE-supervisor-Family\$(ConfigurationName);$(jci_lme_SARAsset)\Library\$(PlatformName)_Libs\NAE-supervisor-Family\$(ConfigurationName);$(curl_SARAsset)\Library\$(PlatformName)_$(ConfigurationName)_FIPS;$(g3_base_SARAsset)\Library\$(PlatformName)_$(ConfigurationName);$(g3_objects_SARAsset)\Library\$(PlatformName)_$(ConfigurationName);$(g3_shared_libraries_SARAsset)\Library\lib;$(g3_shared_libraries_SARAsset)\Library\$(PlatformName)_$(ConfigurationName);$(g3_shared_libraries_SARAsset)\Library\$(PlatformName)_$(ConfigurationName)MCE;$(g3_integrations_SARAsset)\Library\$(PlatformName)_$(ConfigurationName);$(thirdparty_lzo)\lib;$(wolfssl_SARAsset)\Library\$(PlatformName)_Libs\NAE-supervisor-Family\$(ConfigurationName)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>wininet.lib;ws2_32.lib;gxif.lib;gpio.lib;gx_keep.lib;Winhttp.lib;jci_base_libs.lib;C11AnnexK.lib;DbgHelp.lib;legacy_stdio_definitions.lib;C:\ccm_wa\git\g3_metasys_core\g3_product_n50\Win32_Release\MSEA_Supv.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>N50;WIN32;_WINDOWS;MCE_EXPORTS;_CRT_SECURE_NO_WARNINGS;_SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS;_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING;BACNET_IT_DATALINK_SUPPORT;_CRT_NON_CONFORMING_SWPRINTFS;_CRT_NONSTDC_NO_WARNINGS;INCLUDE_SYNCHRONOUS_CALLS;NxE_FAMILY;UNICODE;_UNICODE;__STDC_WANT_LIB_EXT1__=1;USE_WOLFSSL;_VC80_UPGRADE=0x0710</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(jci_base_libs_SARAsset)\Includes;$(jci_mms_SARAsset)\Includes;$(jci_os_api_SARAsset)\Includes;$(ca_dictionary_SARAsset)\Includes;$(jci_ore_SARAsset)\Includes;$(jci_ore_features_SARAsset)\Includes;$(jci_pointio_SARAsset)\Includes;$(jci_baccomm_SARAsset)\Includes;$(jci_serial_comm_SARAsset)\Includes;$(jci_tool_lib_SARAsset)\Includes;$(jci_integrations_SARAsset)\Includes;$(g3_base_SARAsset)\Includes;$(g3_shared_libraries_SARAsset)\Includes;$(g3_integrations_SARAsset)\Includes;$(jci_sab_SARAsset)\Includes;$(jci_lme_SARAsset)\Includes;C:\ccm_wa\git\g3_metasys_core\g3_product_n50\\include;C:\ccm_wa\git\g3_metasys_core\g3_product_n50\..\g3_product_shared\N40_N50_NIS_ODS\include;C:\ccm_wa\git\g3_metasys_core\g3_product_n50\..\g3_product_shared\N50_NIS\include;C:\ccm_wa\git\g3_metasys_core\g3_product_n50\..\g3_product_shared\N50_NIS_ODS\include;C:\ccm_wa\git\g3_metasys_core\g3_product_n50\..\g3_product_shared\N50_ODS\include;C:\ccm_wa\git\g3_metasys_core\g3_product_n50\..\g3_product_shared\N40_N50_NIS_ODS\target\mce</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(jci_base_libs_SARAsset)\Library\$(PlatformName)_Libs\NAE-supervisor-Family\$(ConfigurationName);$(jci_mms_SARAsset)\Library\$(PlatformName)_Libs\NAE-supervisor-Family\$(ConfigurationName);$(jci_os_api_SARAsset)\Library\$(PlatformName)_Libs\NAE-supervisor-Family\$(ConfigurationName);$(jci_ore_SARAsset)\Library\$(PlatformName)_Libs\NAE-supervisor-Family\$(ConfigurationName);$(jci_ore_features_SARAsset)\Library\$(PlatformName)_Libs\NAE-supervisor-Family\$(ConfigurationName);$(jci_pointio_SARAsset)\Library\$(PlatformName)_Libs\NAE-supervisor-Family\$(ConfigurationName);$(jci_tool_lib_SARAsset)\Library\$(PlatformName)_Libs\NAE-supervisor-Family\$(ConfigurationName);$(jci_baccomm_SARAsset)\Library\$(PlatformName)_Libs\NAE-supervisor-Family\$(ConfigurationName);$(jci_serial_comm_SARAsset)\Library\$(PlatformName)_Libs\NAE-supervisor-Family\$(ConfigurationName);$(jci_integrations_SARAsset)\Library\$(PlatformName)_Libs\NAE-supervisor-Family\$(ConfigurationName);$(jci_sab_SARAsset)\Library\$(PlatformName)_Libs\NAE-supervisor-Family\$(ConfigurationName);$(jci_lme_SARAsset)\Library\$(PlatformName)_Libs\NAE-supervisor-Family\$(ConfigurationName);$(curl_SARAsset)\Library\$(PlatformName)_$(ConfigurationName)_FIPS;$(g3_base_SARAsset)\Library\$(PlatformName)_$(ConfigurationName);$(g3_objects_SARAsset)\Library\$(PlatformName)_$(ConfigurationName);$(g3_shared_libraries_SARAsset)\Library\lib;$(g3_shared_libraries_SARAsset)\Library\$(PlatformName)_$(ConfigurationName);$(g3_shared_libraries_SARAsset)\Library\$(PlatformName)_$(ConfigurationName)MCE;$(g3_integrations_SARAsset)\Library\$(PlatformName)_$(ConfigurationName);$(thirdparty_lzo)\lib;$(wolfssl_SARAsset)\Library\$(PlatformName)_Libs\NAE-supervisor-Family\$(ConfigurationName)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>wininet.lib;ws2_32.lib;gxif.lib;gpio.lib;gx_keep.lib;Winhttp.lib;jci_base_libs.lib;C11AnnexK.lib;DbgHelp.lib;legacy_stdio_definitions.lib;C:\ccm_wa\git\g3_metasys_core\g3_product_n50\Win32_Release\MSEA_Supv.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="MseaDebug.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
