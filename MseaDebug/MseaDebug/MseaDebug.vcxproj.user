@@ -11,9 +11,17 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LocalDebuggerWorkingDirectory>C:\ccm_wa\git\g3_metasys_core\g3_product_n50\Win32_Release</LocalDebuggerWorkingDirectory>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+    <RemoteDebuggerCommand>C:\Program Files (x86)\Johnson Controls\MetasysIII\WS\bin\MseaDebug.exe</RemoteDebuggerCommand>
+    <RemoteDebuggerWorkingDirectory>C:\Program Files (x86)\Johnson Controls\MetasysIII\WS\bin</RemoteDebuggerWorkingDirectory>
+    <RemoteDebuggerServerName>192.168.0.103</RemoteDebuggerServerName>
+    <RemoteDebuggerConnection>RemoteWithoutAuthentication</RemoteDebuggerConnection>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LocalDebuggerWorkingDirectory>C:\ccm_wa\git\g3_metasys_core\g3_product_n50\Win32_Release</LocalDebuggerWorkingDirectory>
-    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+    <DebuggerFlavor>WindowsRemoteDebugger</DebuggerFlavor>
+    <RemoteDebuggerCommand>C:\Program Files (x86)\Johnson Controls\MetasysIII\WS\bin\MseaDebug.exe</RemoteDebuggerCommand>
+    <RemoteDebuggerWorkingDirectory>C:\Program Files (x86)\Johnson Controls\MetasysIII\WS\bin</RemoteDebuggerWorkingDirectory>
+    <RemoteDebuggerServerName>192.168.0.103</RemoteDebuggerServerName>
+    <RemoteDebuggerConnection>RemoteWithoutAuthentication</RemoteDebuggerConnection>
   </PropertyGroup>
 </Project>

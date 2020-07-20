@@ -8,6 +8,7 @@ using namespace std;
 
 #include "C:\ccm_wa\git\jci_base_libs\Public\Includes\productFamilyVariations.h"
 #include "C:\ccm_wa\git\g3_metasys_core\g3_product_shared\N40_N50\target\nxx_build\MetasysControlEngine.h"
+#include "C:\ccm_wa\git\g3_base\Public\includes\covmonitormain.h"
 
 #ifdef WIN32
 #include "C:\ccm_wa\git\myScripts\myLogs.h"
@@ -15,19 +16,60 @@ using namespace std;
 #include "/mnt/c/ccm_wa/git/myScripts/myLogs.h"
 #endif
 
+// Define required macros
+#define UNSIGNED16             unsigned short
+
+// __declspec(dllimport)
+// Explicitly declare functions...
+//UNSIGNED16 verifyNoConfigEdit(const TCHAR * config_pathname);
+
+
+//C:\ccm_wa\git\g3_metasys_core\g3_product_nis\Win32_Release\MSEA_Supv.lib
+
+void fun()
+{
+
+
+  cin.get();
+  exit(0);
+}
 
 int main()
 {
-  cout << "Main started" << endl;
-  logMessage("");
+  //fun();
 
-  // Called any MSEA function here.
+  cout << "Main started v1.7" << endl;
+  logMessage("=====================================================================================");
+
+  cout << "Verifying whether we can load MSEA_Supv.dll..." << endl;
+  HMODULE hModule = LoadLibraryEx(TEXT("MSEA_Supv.dll"), NULL, 0);
+  if (hModule == NULL)
+  {
+    cout << "Unable to load DLL, Error : " << GetLastError() << endl;
+    cin.get();
+    return 0;
+  }
+  cout << "DLL loaded successfully...\n" << endl;
+
+  cout << "Calling fnMCEStartup..." << endl;
   fnMCEStartup();
+  cout << "fnMCEStartup Finished...\n" << endl;
+
+  //Sleep(5555);
+  //cout << "Calling startADXOnlyDataRefresh, Press any key to continue..." << endl;
+  //cin.get();
+  //startADXOnlyDataRefresh();
+
+  //Sleep(5555);
+  //cout << "Calling fnGetNavView, Press any key to continue..." << endl;
+  //cin.get();
+  //TCHAR *xml = new TCHAR[5555];
+  //long ret = fnGetNavView(L"", 52, 0, 0, -1, L"", &xml);
+  //cout << "fnGetNavView Finished, returned : "<< ret << endl;
 
 
 
-
-  logMessage("");
+  logMessage("=====================================================================================");
   cout << "Main finished" << endl;
   cin.get();
 }
