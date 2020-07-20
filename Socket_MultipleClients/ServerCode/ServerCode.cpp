@@ -4,10 +4,33 @@
 #include <iostream>
 using namespace std;
 
-#include<WinSock2.h>
+#include <process.h>
+
 #include "CSocket.h"
 
 #pragma comment (lib, "ws2_32.lib")
+
+unsigned __stdcall  handle_socket(void* sock)
+{
+  char buff[4096] = "";
+  CClientSocket *clientSocket = (CClientSocket *)sock;
+  cout << "\n client " << clientSocket->getSocket() << " connected on thread " << GetCurrentThreadId() << endl;
+  do
+  {
+    memset(buff, 0, 4096);
+    int bytesRecv = clientSocket->recvData(buff, 4096, 0);
+    if (SOCKET_ERROR == bytesRecv || 0 == bytesRecv)
+    {
+      break;
+    }
+
+    cout << "Message from client - " << clientSocket->getSocket() << " : " << buff << endl;
+
+  } while (buff[0] = '0' || buff[0] == 0);
+
+  cout << "client " << clientSocket->getSocket() << " disconnected on thread " << GetCurrentThreadId() << endl;
+  return 0;
+}
 
 int main()
 {
@@ -41,29 +64,23 @@ int main()
   sockaddr_in client;
   int clientSize = sizeof(client);
 
-  CClientSocket clientSocket1 = listeningSocket1.acceptCSocket((sockaddr *)&client, &clientSize);
-
-  // while loop, accept and echo client message.
-  char buff[4096] = "";
-
-  do
+  const int clientCount = 7;
+  CClientSocket clientSocket[clientCount];
+  HANDLE hThread[clientCount];
+  unsigned threadID[clientCount];
+  for (size_t i = 0; i < clientCount; i++)
   {
-    memset(buff, 0, 4096);
-    int bytesRecv = clientSocket1.recvData(buff, 4096, 0);
-    if (SOCKET_ERROR == bytesRecv || 0 == bytesRecv)
-    {
-      break;
-    }
+    cout << "Waiting for new connection. active connection available " << clientCount - i << endl;
+    clientSocket[i].setSocket(listeningSocket1.acceptSocket((sockaddr *)&client, &clientSize));
 
-    cout << "client msg : " << buff << endl;
-
-  } while (buff[0] = '0' || buff[0] == 0);
+    hThread[i] = (HANDLE)_beginthreadex(NULL, 0, handle_socket, &clientSocket[i], 0, &threadID[i]);
+  }
 
   // Cleanup WinSock.
-  WSACleanup();
-
+  Sleep(9999);
   cout << "Server main finished" << endl;
   cin.get();
+  WSACleanup();
   return 0;
 }
 

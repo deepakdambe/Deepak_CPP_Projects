@@ -50,6 +50,16 @@ public:
   {
     return recv(m_socket, pBuffer, buffLen, flags);
   }
+
+  SOCKET getSocket()
+  {
+    return m_socket;
+  }
+
+  void setSocket(SOCKET soc)
+  {
+    m_socket = soc;
+  }
 };
 
 
@@ -65,7 +75,7 @@ public:
     return bind(m_socket, pName, namelen);
   }
 
-  int listenSocket(int backlog)
+  virtual int listenSocket(int backlog)
   {
     return listen(m_socket, backlog);
   }
@@ -84,4 +94,16 @@ private:
 
 };
 
+
+class myDerived : public CServerSocket
+{
+public:
+  int listenSocket(int backlog) override {}
+};
+
+class CWinService
+{
+public:
+  CWinService(CServerSocket &ref) {}
+};
 
