@@ -44,7 +44,6 @@ REM ==================================================  FUNCTIONS  =============
   echo Stopping services...
 
   REM Killing running services...
-  net stop miiidm
   TASKKILL /F /IM DeviceManager*
   TASKKILL /F /IM w3wp*
   TASKKILL /F /IM javaw*

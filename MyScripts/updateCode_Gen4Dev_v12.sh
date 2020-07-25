@@ -94,10 +94,10 @@ cd $G3_ROOT/g3_integrations/ && git pull origin 12.0
 echo ""
 echo ""
 
-echo "$updMsg g3_metasys_core"
-cd $G3_ROOT/g3_metasys_core/ && git pull origin 12.0
-echo ""
-echo ""
+# echo "$updMsg g3_metasys_core"
+# cd $G3_ROOT/g3_metasys_core/ && git pull origin 12.0
+# echo ""
+# echo ""
 
 echo "$updMsg nae_product"
 cd $ROOT/nae_product/ && git pull origin 12.0

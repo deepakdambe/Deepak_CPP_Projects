@@ -11,7 +11,7 @@ set g3ProductServer=	1
 set g3ProductNIS=	1
 
 REM debug, debug_Big_OID, release, release_Big_OID
-set Build_Config=release_Big_OID
+set Build_Config=release
 
 echo Please confirm following points before start building
 echo Your Env variables are set to this folder.
