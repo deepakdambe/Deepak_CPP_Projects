@@ -2,16 +2,7 @@
 :: JCI Projects Build
 @echo off
 
-set g3Base=		  1
-set g3Shared=	  1
-set g3Objects=	1
-set g3Integrtn=	1
-set g3Product=	1
-set g3ProductServer=	1
-set g3ProductNIS=	1
-
-REM debug, debug_Big_OID, release, release_Big_OID
-set Build_Config=release
+REM debug, release
 
 echo Please confirm following points before start building
 echo Your Env variables are set to this folder.
@@ -20,7 +11,6 @@ echo Update projects from Git.
 
 SET errorcount = 0
 SET logDir=C:\ccm_wa\git\logs
-set notepadPath="C:\Program Files\Notepad++\notepad++.exe"
 
 REM call "C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\bin\vcvars32.bat"
 call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\VC\Auxiliary\Build\vcvars32.bat"
@@ -33,209 +23,100 @@ echo " " >> %logDir%\winBuilds.log
 echo $$$$$$$$$$ All G3 projects started building .... $$$$$$$$$$ >> %logDir%\winBuilds.log
 echo " " >> %logDir%\winBuilds.log
 
-%notepadPath% %logDir%\winBuilds.log
-
-
-::=============================================== Solution Path ===================================
-
 set g3Path=C:\ccm_wa\git
 
-set G3_BASE_SOLUTION_PATH="%g3Path%\g3_base\base_win32_VS15.sln"
+set vs2017devenvPath="C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\devenv"
 
-set G3_OBJECTS_SOLUTION_PATH="%g3Path%\g3_objects\g3_objects_WIN32_VS15.sln"
+set Build_Config=release
 
-set G3_SHARED_LIBRARIES_SOLUTION_PATH="%g3Path%\g3_shared_libraries\g3_shared_libraries_WIN32_VS15.sln"
+call :BuildG3Code g3_base base_win32_VS15.sln
+REM call :BuildG3Code g3_objects g3_objects_WIN32_VS15.sln
+REM call :BuildG3Code g3_shared_libraries g3_shared_libraries_WIN32_VS15.sln
+REM call :BuildG3Code g3_integrations g3_integrations_win32_VS15.sln
+call :BuildG3Code g3_metasys_core g3_product_n50\g3_product_n50_WIN32_VS15.sln
+call :BuildG3Code g3_metasys_core g3_product_server\g3_product_ods_WIN32_VS15.sln
 
-set G3_INTEGRATIONS_SOLUTION_PATH="%g3Path%\g3_integrations\g3_integrations_win32_VS15.sln"
+call :WriteInFileAndConsole "."
+call :WriteInFileAndConsole "=============== Searching for Failed builds  ==============="
+findstr /I /N /C:"Build failed" %logDir%\winBuilds.log
+findstr /I /N /C:"Build failed" %logDir%\winBuilds.log >> %logDir%\winBuilds.log 2>&1
+call :WriteInFileAndConsole "============================================================"
+findstr /I /N /C:"========== Build:" %logDir%\winBuilds.log
+findstr /I /N /C:"========== Build:" %logDir%\winBuilds.log >> %logDir%\winBuilds.log 2>&1
+findstr /I /N /C:"========== Rebuild All:" %logDir%\winBuilds.log
+findstr /I /N /C:"========== Rebuild All:" %logDir%\winBuilds.log >> %logDir%\winBuilds.log 2>&1
+call :WriteInFileAndConsole "=============== Complete Searching for Failed builds  ==============="
 
-set G3_PRODUCT_N50_SOLUTION_PATH="%g3Path%\g3_metasys_core\g3_product_n50\g3_product_n50_WIN32_VS15.sln"
+REM call :WriteInFileAndConsole findstr /I /N /C:"Build failed" %logDir%\winBuilds.log
+REM call :WriteInFileAndConsole findstr /I /N /C:"========== Build:" %logDir%\winBuilds.log
+REM findstr /I /N /C:"Build failed" %logDir%\winBuilds.log
+REM call :WriteInFileAndConsole "============================================================"
+REM findstr /I /N /C:"========== Build:" %logDir%\winBuilds.log
 
-set G3_PRODUCT_SERVER_SOLUTION_PATH="%g3Path%\g3_metasys_core\g3_product_server\g3_product_ods_WIN32_VS15.sln"
+REM call :BuildG3Code g3_metasys_core g3_product_nis\g3_product_nis_WIN32_VS15.sln
 
-set G3_PRODUCT_NIS_SOLUTION_PATH="%g3Path%\g3_metasys_core\g3_product_nis\g3_product_nis_WIN32_VS15.sln"
+REM %notepadPath% %logDir%\winBuilds.log
 
-::=============================================== 1. g3_base ======================================
-:: Re-build the project
+REM ======================================================================================
 
-if %g3Base%==0 (
-	goto g3Base_done
-)
+REM debug_Big_OID, release_Big_OID
 
-echo $$$$$$$$$$ Building "g3_base".... $$$$$$$$$$
-echo $$$$$$$$$$ Building "g3_base".... $$$$$$$$$$ >> %logDir%\winBuilds.log
-::%notepadPath% %logDir%\winBuilds.log
+REM set Build_Config=release_Big_OID
+
+REM call :BuildG3Code g3_base               base_win32_VS15.sln
+REM call :BuildG3Code g3_objects            g3_objects_WIN32_VS15.sln
+REM call :BuildG3Code g3_shared_libraries   g3_shared_libraries_WIN32_VS15.sln
+REM call :BuildG3Code g3_integrations       g3_integrations_win32_VS15.sln
+REM call :BuildG3Code g3_metasys_core       g3_product_n50\g3_product_n50_WIN32_VS15.sln
+REM call :BuildG3Code g3_metasys_core       g3_product_server\g3_product_ods_WIN32_VS15.sln
 
 
-call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\devenv.exe" /%BuildType% "%Build_Config%|Win32" %G3_BASE_SOLUTION_PATH% /Out %logDir%\winBuilds.log
-echo ****************************************************************************************************************
-
-echo $$$$$$$$$$ "g3_base" is rebuilded successfully.... $$$$$$$$$$
-
-timeout /t 2
-
-IF %ERRORLEVEL% NEQ 0 (
-  SET /a errorcount = 1
-  goto STOP_BUILD
-)
-
-:g3Base_done
-
-::=============================================== 2. g3_objects ===================================
-:: Re-build the project
-
-if %g3Objects%==0 (
-	goto g3Objects_done
-)
-
-echo.
-echo $$$$$$$$$$ Building "g3_objects".... $$$$$$$$$$
-echo $$$$$$$$$$ Building "g3_objects".... $$$$$$$$$$ >> %logDir%\winBuilds.log
-::%notepadPath% %logDir%\winBuilds.log
-
-call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\devenv.exe" /%BuildType% "%Build_Config%|Win32" %G3_OBJECTS_SOLUTION_PATH% /Out %logDir%\winBuilds.log
-echo ****************************************************************************************************************
-
-timeout /t 2
-
-IF %ERRORLEVEL% NEQ 0 (
-  SET /a errorcount = 2
-  goto STOP_BUILD
-)
-
-:g3Objects_done
-
-::=============================================== 3. g3_shared_libraries ===========================
-:: Re-build the project
-
-if %g3Shared%==0 (
-	goto g3Shared_done
-)
-
-echo.
-echo $$$$$$$$$$ Building "g3_shared_libraries".... $$$$$$$$$$
-echo $$$$$$$$$$ Building "g3_shared_libraries".... $$$$$$$$$$ >> %logDir%\winBuilds.log
-::%notepadPath% %logDir%\winBuilds.log
-
-call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\devenv.exe" /%BuildType% "%Build_Config%|Win32" %G3_SHARED_LIBRARIES_SOLUTION_PATH% /Out %logDir%\winBuilds.log
-echo ****************************************************************************************************************
-
-timeout /t 2
-
-IF %ERRORLEVEL% NEQ 0 (
-  SET /a errorcount = 3
-  goto STOP_BUILD
-)
-
-:g3Shared_done
-
-::=============================================== 4. g3_integrations ==============================
-:: Re-build the project
-
-if %g3Integrtn%==0 (
-	goto g3Integrtn_done
-)
-
-echo.
-echo $$$$$$$$$$ Building "g3_integrations".... $$$$$$$$$$
-echo $$$$$$$$$$ Building "g3_integrations".... $$$$$$$$$$ >> %logDir%\winBuilds.log
-::%notepadPath% %logDir%\winBuilds.log
-
-call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\devenv.exe" /%BuildType% "%Build_Config%|Win32" %G3_INTEGRATIONS_SOLUTION_PATH% /Out %logDir%\winBuilds.log
-echo ****************************************************************************************************************
-
-timeout /t 2
-
-IF %ERRORLEVEL% NEQ 0 (
-  SET /a errorcount = 4
-  goto STOP_BUILD
-)
-
-:g3Integrtn_done
-
-::=============================================== 5. g3_product_n50 ===============================
-::=================================================================================================
-:: Re-build the project
-
-if %g3Product%==0 (
-	goto g3Product_done
-)
-
-echo.
-echo $$$$$$$$$$ Building "g3_product_n50".... $$$$$$$$$$
-echo $$$$$$$$$$ Building "g3_product_n50".... $$$$$$$$$$ >> %logDir%\winBuilds.log
 %notepadPath% %logDir%\winBuilds.log
 
-call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\devenv.exe" /%BuildType% "%Build_Config%|Win32" %G3_PRODUCT_N50_SOLUTION_PATH% /Out %logDir%\winBuilds.log
-type %logDir%\winBuilds.log
-echo ******************************************************************************************
-
-echo Project is rebuilded successfully....
-
-:g3Product_done
-
-
-::=============================================== 5. g3_product_Server ===============================
-::=================================================================================================
-:: Re-build the project
-
-if %g3ProductServer%==0 (
-	goto g3ProductServer_done
-)
-
-echo.
-echo $$$$$$$$$$ Building "g3_product_Server".... $$$$$$$$$$
-echo $$$$$$$$$$ Building "g3_product_Server".... $$$$$$$$$$ >> %logDir%\winBuilds.log
-%notepadPath% %logDir%\winBuilds.log
-
-call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\devenv.exe" /%BuildType% "%Build_Config%|Win32" %G3_PRODUCT_SERVER_SOLUTION_PATH% /Out %logDir%\winBuilds.log
-type %logDir%\winBuilds.log
-echo ******************************************************************************************
-
-echo Project is rebuilded successfully....
-
-:g3ProductServer_done
-
-::=============================================== 5. g3_product_NIS ===============================
-::=================================================================================================
-:: Re-build the project
-
-if %g3ProductNIS%==0 (
-	goto g3ProductNIS_done
-)
-
-echo.
-echo $$$$$$$$$$ Building "g3_product_NIS".... $$$$$$$$$$
-echo $$$$$$$$$$ Building "g3_product_NIS".... $$$$$$$$$$ >> %logDir%\winBuilds.log
-%notepadPath% %logDir%\winBuilds.log
-
-call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\devenv.exe" /%BuildType% "%Build_Config%|Win32" %G3_PRODUCT_NIS_SOLUTION_PATH% /Out %logDir%\winBuilds.log
-type %logDir%\winBuilds.log
-echo ******************************************************************************************
-
-echo Project is rebuilded successfully....
-
-:g3ProductNIS_done
-
-echo ====================================
-echo.
-echo All JNC core assests projects build successfully....
-echo.
-echo =====================================
-::pause
-
-
-:DONE
-echo $$$$$$$$$$ All G3 projects is builded successfully.... $$$$$$$$$$
 timeout /t 111
+REM pause
+exit /b
 
-::C:\ccm_wa\git\scripts\StopServicesAndCopy_Product_N50_Dlls.bat
-
-
-:STOP_BUILD
-ECHO FAILED!
-ECHO Error copying %errorcount% file
-::pause
+REM ==================================================  FUNCTIONS  ==================================================
 
 
+:BuildG3Code 
+  call :WriteInFileAndConsole "."
+  call :WriteInFileAndConsole "=============== Started building %Build_Config%  %~1\%~2  ==============="
+  set solutionPath="%g3Path%\%~1\%~2"
 
+  REM echo %vs2017devenvPath% /%BuildType% "%Build_Config%|Win32" %solutionPath% /Out %logDir%\winBuilds.log
+  call %vs2017devenvPath% /%BuildType% "%Build_Config%|Win32" %solutionPath% /Out %logDir%\winBuilds.log
+
+  tail -2 %logDir%\winBuilds.log
+  call :WriteInFileAndConsole "===============  Finished building %Build_Config%  %~1\%~2  ==============="
+  call :WriteInFileAndConsole "."
+exit /b 0 
+
+REM ======================================================================================
+
+:WriteInFileAndConsole
+  echo %~1
+  echo %~1 >> %logDir%\winBuilds.log 2>&1
+exit /b 0 
+
+REM ======================================================================================
+
+
+
+REM "C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\devenv" /Build "release|Win32" "C:\ccm_wa\git\g3_base\base_win32_VS15.sln" /Out C:\ccm_wa\git\logs\winBuilds.log
+
+REM "C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\devenv" /Build "release|Win32" "C:\ccm_wa\git\g3_objects\g3_objects_WIN32_VS15.sln" /Out C:\ccm_wa\git\logs\winBuilds.log
+
+REM "C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\devenv" /Build "release|Win32" "C:\ccm_wa\git\g3_shared_libraries\g3_shared_libraries_WIN32_VS15.sln" /Out C:\ccm_wa\git\logs\winBuilds.log
+
+REM "C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\devenv" /Build "release|Win32" "C:\ccm_wa\git\g3_integrations\g3_integrations_win32_VS15.sln" /Out C:\ccm_wa\git\logs\winBuilds.log
+
+REM "C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\devenv" /Build "release|Win32" "C:\ccm_wa\git\g3_metasys_core\g3_product_n50\g3_product_n50_WIN32_VS15.sln" /Out C:\ccm_wa\git\logs\winBuilds.log
+
+REM "C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\devenv" /Build "release|Win32" "C:\ccm_wa\git\g3_metasys_core\g3_product_server\g3_product_ods_WIN32_VS15.sln" /Out C:\ccm_wa\git\logs\winBuilds.log
+
+REM "C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\devenv" /Build "release|Win32" "C:\ccm_wa\git\g3_metasys_core\g3_product_nis\g3_product_nis_WIN32_VS15.sln" /Out C:\ccm_wa\git\logs\winBuilds.log
+
+REM "C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\devenv" /Build "release|Win32" "C:\ccm_wa\git\g3_metasys_core\g3_server\g3_product_server_WIN32_VS15.sln" /Out C:\ccm_wa\git\logs\winBuilds.log
 

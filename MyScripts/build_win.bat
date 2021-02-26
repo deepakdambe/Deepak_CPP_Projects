@@ -25,6 +25,7 @@ REM call .\win32-batch\Win32clean.bat   C:\ccm_wa\git\jci_msl\Private\Win32_Make
 REM call .\win32-batch\Win32build.bat   C:\ccm_wa\git\jci_msl\Private\Win32_Make\ C:\ccm_wa\git\jci_msl  %Build_Config% C:\ccm_wa\git\jci_scripts\cmake\targets\NAE-supervisor-family.cmake >> %logDir%\winBuilds.log 2>&1
 
 echo. >> %logDir%\winBuilds.log 2>&1
+REM pause
 
 call :BuildRepoWithMsea jci_base_libs
 call :BuildRepoWithMsea jci_mms
@@ -55,11 +56,12 @@ REM call :BuildRepoWithBigOid jci_integrations
 echo $$$$$$$$$$ All JNC projects is builded successfully.... $$$$$$$$$$
 timeout /t 5
 
-REM timeout /t 22
+REM timeout /t 55
 REM exit
 
-cd ..
-C:\ccm_wa\myCodes\Deepak_CPP_Projects\MyScripts\BuildProj_G3_10.bat
+REM cd ..
+REM C:\ccm_wa\myCodes\Deepak_CPP_Projects\MyScripts\BuildProj_G3_10.bat
+C:\ccm_wa\myCodes\Deepak_CPP_Projects\MyScripts\build_g3_repos.bat
 
 pause
 exit
@@ -74,8 +76,10 @@ REM ==================================================  FUNCTIONS  =============
   call :WriteInFileAndConsole "."
   call :WriteInFileAndConsole "=========================  Started building  %~1  ========================="
   call jnc-build.bat %~1      build %Build_Config% NAE-supervisor-family Win32 >> %logDir%\winBuilds.log 2>&1
-  call :WriteInFileAndConsole "."
+  REM call jnc-build.bat %~1      build %Build_Config% smart-equipment-family Win32 >> %logDir%\winBuilds.log 2>&1
+  tail -2 %logDir%\winBuilds.log
   call :WriteInFileAndConsole "=========================  Finished building  %~1  ========================="
+  call :WriteInFileAndConsole "."
   call :WriteInFileAndConsole "."
 exit /b 0 
 
@@ -83,10 +87,11 @@ REM ============================================================================
 
 :BuildRepoWithBigOid
   call :WriteInFileAndConsole "."
-  call :WriteInFileAndConsole "=========================  Started building  %~1  ========================="
+  call :WriteInFileAndConsole "=========================  Started building  %~1 For Big_OID ========================="
   call jnc-build.bat %~1      build %Build_Config% NAE-supervisor-family Win32 none Big_OID >> %logDir%\winBuilds.log 2>&1
+  tail -2 %logDir%\winBuilds.log
+  call :WriteInFileAndConsole "=========================  Finished building  %~1 For Big_OID  ========================="
   call :WriteInFileAndConsole "."
-  call :WriteInFileAndConsole "=========================  Finished building  %~1  ========================="
   call :WriteInFileAndConsole "."
 exit /b 0 
 

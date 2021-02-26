@@ -3,11 +3,21 @@ export updMsg=" *******  Updating "
 
 sh branchShow_JNC_G3.sh
 
-read -p "This script will update all local repos, Press any key to continue, or ctrl+C to exit." -t 22
+read -p "\n This script will update all local repos, Press any key to continue, or ctrl+C to exit. \n" -t 22
 
 updateJNC=1
 if [ $updateJNC = 1 ]; then
 
+  echo "$updMsg jci_scripts"
+  cd $ROOT/jci_scripts/ && git pull origin master
+  echo ""
+  echo ""
+
+  echo "$updMsg jci_msl"
+  cd $ROOT/jci_msl/ && git pull origin master
+  echo ""
+  echo ""
+  
   echo "$updMsg jci_base_libs"
   cd $ROOT/jci_base_libs/ && git pull origin master
   echo ""
@@ -57,17 +67,7 @@ if [ $updateJNC = 1 ]; then
   cd $ROOT/jci_integrations/ && git pull origin master
   echo ""
 
-  echo "$updMsg jci_scripts"
-  cd $ROOT/jci_scripts/ && git pull origin master
-  echo ""
-  echo ""
-
-  echo "$updMsg jci_msl"
-  cd $ROOT/jci_msl/ && git pull origin master
-  echo ""
-  echo ""
-
-  read -p "All JNC Update Done, Press any key to continue, or ctrl+C to exit." -t 12
+  read -p "\n All JNC Update Done, Press any key to continue, or ctrl+C to exit. \n" -t 12
 
 fi
 # ***************************************************************************************
@@ -94,10 +94,10 @@ cd $G3_ROOT/g3_integrations/ && git pull origin 12.0
 echo ""
 echo ""
 
-# echo "$updMsg g3_metasys_core"
-# cd $G3_ROOT/g3_metasys_core/ && git pull origin 12.0
-# echo ""
-# echo ""
+echo "$updMsg g3_metasys_core"
+cd $G3_ROOT/g3_metasys_core/ && git pull origin 12.0
+echo ""
+echo ""
 
 echo "$updMsg nae_product"
 cd $ROOT/nae_product/ && git pull origin 12.0
@@ -114,15 +114,15 @@ cd $G3_ROOT/g3_scripts/ && git pull origin master
 echo ""
 echo ""
 
-# echo "$updMsg g3_managed"
-# cd $G3_ROOT/g3_managed/ && git pull origin 12.0
-# echo ""
-# echo ""
+echo "$updMsg g3_managed"
+cd $G3_ROOT/g3_managed/ && git pull origin 12.0
+echo ""
+echo ""
 
-echo "$updMsg mmda"
-cd $G3_ROOT/mmda/ && git pull origin master
-echo ""
-echo ""
+# echo "$updMsg mmda"
+# cd $G3_ROOT/mmda/ && git pull origin master
+# echo ""
+# echo ""
 
 read -p "All Update Done, Press any key to continue" -t 777
 

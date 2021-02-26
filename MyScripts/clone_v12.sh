@@ -18,7 +18,7 @@ masterRepo=(
   # "jci_scripts"
 
   #jci_unison5.2
-  #jci_lme
+  # jci_lme
   #g4nc_common_data_model
   #jci_data_model
   #jci_config_comms
@@ -49,10 +49,11 @@ g3_12_Repo=(
   # "g3_integrations"
   # "g3_shared_libraries"
   # "g3_metasys_core"
-  "g3_managed"
+  # "g3_managed"
   # "nae_product"
   # "java_ui"
   # "snx_product"
+  # SCT-PS-Database
   )
 
 for element in ${g3_12_Repo[@]}
