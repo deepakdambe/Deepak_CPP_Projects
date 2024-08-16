@@ -76,20 +76,20 @@ public:
 
 int main()
 {
-    cThreadPool tpool(4);
+    cThreadPool tpool(3);
 
     cout << "main started" << endl;
 
-    for (size_t i = 0; i < 10; i++)
+    for (size_t i = 0; i < 20; i++)
     {
         tpool.Submit([=] {
             //cout << "Printing " << i << " from thread " << this_thread::get_id() << endl;
             printf("Printing %u from %u \n", i, this_thread::get_id());
-            this_thread::sleep_for(chrono::seconds(1));
+            this_thread::sleep_for(chrono::seconds(2));
             });
     }
 
-    this_thread::sleep_for(chrono::seconds(4));
+    //this_thread::sleep_for(chrono::seconds(22));
     cout << "main finished" << endl;
     return 0;
 }
